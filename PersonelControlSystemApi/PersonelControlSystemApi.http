@@ -1,0 +1,6 @@
+@PersonelControlSystemApi_HostAddress = http://localhost:5289
+
+GET {{PersonelControlSystemApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
