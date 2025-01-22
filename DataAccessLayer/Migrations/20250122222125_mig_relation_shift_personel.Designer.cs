@@ -4,6 +4,7 @@ using DataAccessLayer.Concrete;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccessLayer.Migrations
 {
     [DbContext(typeof(Context))]
-    partial class ContextModelSnapshot : ModelSnapshot
+    [Migration("20250122222125_mig_relation_shift_personel")]
+    partial class mig_relation_shift_personel
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -99,9 +102,6 @@ namespace DataAccessLayer.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PersonelID"));
 
-                    b.Property<int>("LocationID")
-                        .HasColumnType("int");
-
                     b.Property<string>("PersonelName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -120,8 +120,6 @@ namespace DataAccessLayer.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("PersonelID");
-
-                    b.HasIndex("LocationID");
 
                     b.HasIndex("ShiftID");
 
@@ -171,26 +169,13 @@ namespace DataAccessLayer.Migrations
 
             modelBuilder.Entity("EntityLayer.Concrete.Personel", b =>
                 {
-                    b.HasOne("EntityLayer.Concrete.Location", "Location")
-                        .WithMany("Personels")
-                        .HasForeignKey("LocationID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("EntityLayer.Concrete.Shift", "Shift")
                         .WithMany("Personels")
                         .HasForeignKey("ShiftID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Location");
-
                     b.Navigation("Shift");
-                });
-
-            modelBuilder.Entity("EntityLayer.Concrete.Location", b =>
-                {
-                    b.Navigation("Personels");
                 });
 
             modelBuilder.Entity("EntityLayer.Concrete.Shift", b =>

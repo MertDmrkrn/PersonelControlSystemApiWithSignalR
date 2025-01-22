@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace EntityLayer.Concrete
 {
-    public class Location
+    public class Shift
     {
-        public int LocationID { get; set; }
+        public int ShiftID { get; set; }
 
-        public string LocationName { get; set; }
+        public string ShiftHours { get; set; }
 
-        
+        public List<Personel> Personels { get; set; }
     }
 }

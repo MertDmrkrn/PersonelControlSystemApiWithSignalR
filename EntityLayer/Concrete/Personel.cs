@@ -18,6 +18,13 @@ namespace EntityLayer.Concrete
 
         public DateTime PersonelShiftDate { get; set; }
 
-        
+        public int ShiftID { get; set; }
+
+        public Shift Shift { get; set; }
+
+        public int LocationID { get; set; }
+
+        public Location Location { get; set; }
+
     }
 }
