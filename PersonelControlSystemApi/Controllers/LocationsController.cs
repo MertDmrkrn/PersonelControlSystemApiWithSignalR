@@ -12,26 +12,27 @@ namespace PersonelControlSystemApi.Controllers
     public class LocationsController : ControllerBase
     {
         private readonly ILocationService _locationService;
-        private readonly IMapper _mapper;
 
-        public LocationsController(ILocationService locationService, IMapper mapper)
+        public LocationsController(ILocationService locationService)
         {
             _locationService = locationService;
-            _mapper = mapper;
         }
 
         [HttpGet]
         public IActionResult LocationList() 
         {
             var values=_locationService.TGetListAll();
-            return Ok(_mapper.Map<List<ResultLocationDto>>(values));
+            return Ok(values);
         }
 
         [HttpPost]
         public IActionResult AddLocation(CreateLocationDto createLocationDto)
         {
-            var value = _mapper.Map<Location>(createLocationDto);
-            _locationService.TAdd(value);
+            Location location = new Location()
+            {
+                LocationName = createLocationDto.LocationName
+            };
+            _locationService.TAdd(location);
             return Ok("Lokasyon Ekleme İşlemi Gerçekleştirildi.");
         }
 
@@ -46,8 +47,12 @@ namespace PersonelControlSystemApi.Controllers
         [HttpPut]
         public IActionResult UpdateLocation(UpdateLocationDto updateLocationDto)
         {
-            var value=_mapper.Map<Location>(updateLocationDto);
-            _locationService.TUpdate(value);
+            Location location = new Location()
+            {
+                LocationID = updateLocationDto.LocationID,
+                LocationName = updateLocationDto.LocationName
+            };
+            _locationService.TUpdate(location);
             return Ok("Lokasyon Güncelleme İşlemi Gerçekleştirildi.");
         }
 
@@ -55,7 +60,7 @@ namespace PersonelControlSystemApi.Controllers
         public IActionResult GetLocation(int id)
         {
             var values = _locationService.TGetByID(id);
-            return Ok(_mapper.Map<GetLocationDto>(values));
+            return Ok(values);
         }
 
     }
