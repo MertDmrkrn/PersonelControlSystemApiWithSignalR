@@ -4,17 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EntityLayer.Concrete
+namespace PersonelControlSystemDto.LocationDto
 {
-    public class Location
+    public class UpdateLocationDto
     {
         public int LocationID { get; set; }
 
         public string LocationName { get; set; }
-
-        public List<Personel> Personels { get; set; }
-
-        public List<OhsReport> OhsReports { get; set; }
-
     }
 }

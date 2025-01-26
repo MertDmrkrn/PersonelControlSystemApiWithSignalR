@@ -4,16 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EntityLayer.Concrete
+namespace PersonelControlSystemDto.ShiftDto
 {
-    public class Shift
+    public class UpdateShiftDto
     {
         public int ShiftID { get; set; }
 
         public string ShiftHours { get; set; }
-
-        public List<Personel> Personels { get; set; }
-
-        public List<OhsReport> OhsReports { get; set; }
     }
 }

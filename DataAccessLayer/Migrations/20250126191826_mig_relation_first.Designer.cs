@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccessLayer.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20250122222313_mig_relation_location_personel")]
-    partial class mig_relation_location_personel
+    [Migration("20250126191826_mig_relation_first")]
+    partial class mig_relation_first
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -78,6 +78,9 @@ namespace DataAccessLayer.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("OhsID"));
 
+                    b.Property<int>("LocationID")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("OhsDate")
                         .HasColumnType("datetime2");
 
@@ -89,7 +92,14 @@ namespace DataAccessLayer.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("ShiftID")
+                        .HasColumnType("int");
+
                     b.HasKey("OhsID");
+
+                    b.HasIndex("LocationID");
+
+                    b.HasIndex("ShiftID");
 
                     b.ToTable("OhsReports");
                 });
@@ -172,6 +182,25 @@ namespace DataAccessLayer.Migrations
                     b.ToTable("Shifts");
                 });
 
+            modelBuilder.Entity("EntityLayer.Concrete.OhsReport", b =>
+                {
+                    b.HasOne("EntityLayer.Concrete.Location", "Location")
+                        .WithMany("OhsReports")
+                        .HasForeignKey("LocationID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("EntityLayer.Concrete.Shift", "Shift")
+                        .WithMany("OhsReports")
+                        .HasForeignKey("ShiftID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Location");
+
+                    b.Navigation("Shift");
+                });
+
             modelBuilder.Entity("EntityLayer.Concrete.Personel", b =>
                 {
                     b.HasOne("EntityLayer.Concrete.Location", "Location")
@@ -193,11 +222,15 @@ namespace DataAccessLayer.Migrations
 
             modelBuilder.Entity("EntityLayer.Concrete.Location", b =>
                 {
+                    b.Navigation("OhsReports");
+
                     b.Navigation("Personels");
                 });
 
             modelBuilder.Entity("EntityLayer.Concrete.Shift", b =>
                 {
+                    b.Navigation("OhsReports");
+
                     b.Navigation("Personels");
                 });
 #pragma warning restore 612, 618
