@@ -25,6 +25,9 @@ builder.Services.AddScoped<INotificationDal, EfNotificationDal>();
 builder.Services.AddScoped<IOhsReportService, OhsReportManager>();
 builder.Services.AddScoped<IOhsReportDal, EfOhsReportDal>();
 
+builder.Services.AddScoped<IPersonelService, PersonelManager>();
+builder.Services.AddScoped<IPersonelDal,EfPersonelDal>();
+
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();

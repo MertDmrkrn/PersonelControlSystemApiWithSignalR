@@ -23,7 +23,7 @@ namespace PersonelControlSystemApi.Controllers
         [HttpGet]
         public IActionResult PersonelList()
         {
-            var values=_personelService.TGetListAll();
+            var values = _personelService.TGetListAll();
             return Ok(_mapper.Map<List<ResultPersonelDto>>(values));
         }
 
@@ -35,6 +35,27 @@ namespace PersonelControlSystemApi.Controllers
             return Ok("Personel Ekleme İşlemi Gerçekleştirildi.");
         }
 
-        
+        [HttpDelete]
+        public IActionResult DeletePersonel(int id)
+        {
+            var values = _personelService.TGetByID(id);
+            _personelService.TDelete(values);
+            return Ok("Personel Silme İşlemi Gerçekleştirildi.");
+        }
+
+        [HttpPut]
+        public IActionResult UpdatePersonel(UpdatePersonelDto updatePersonelDto)
+        {
+            var values = _mapper.Map<Personel>(updatePersonelDto);
+            _personelService.TUpdate(values);
+            return Ok("Personel Güncelleme İşlemi Gerçekleştirildi.");
+        }
+
+        [HttpGet("GetPersonel")]
+        public IActionResult GetPersonel(int id)
+        {
+            var values=_personelService.TGetByID(id);
+            return Ok(_mapper.Map<GetPersonelDto>(values));
+        }
     }
 }
