@@ -15,5 +15,9 @@ namespace PersonelControlSystemDto.OhsReportDto
         public string OhsDescription { get; set; }
 
         public DateTime OhsDate { get; set; }
+
+        public int LocationID { get; set; }
+
+        public int ShiftID { get; set; }
     }
 }
