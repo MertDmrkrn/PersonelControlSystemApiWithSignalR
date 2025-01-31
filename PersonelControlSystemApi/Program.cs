@@ -26,7 +26,13 @@ builder.Services.AddScoped<IOhsReportService, OhsReportManager>();
 builder.Services.AddScoped<IOhsReportDal, EfOhsReportDal>();
 
 builder.Services.AddScoped<IPersonelService, PersonelManager>();
-builder.Services.AddScoped<IPersonelDal,EfPersonelDal>();
+builder.Services.AddScoped<IPersonelDal, EfPersonelDal>();
+
+builder.Services.AddScoped<IRequestService, RequestManager>();
+builder.Services.AddScoped<IRequestDal, EfRequestDal>();
+
+builder.Services.AddScoped<IShiftService, ShiftManager>();
+builder.Services.AddScoped<IShiftDal, EfShiftDal>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
