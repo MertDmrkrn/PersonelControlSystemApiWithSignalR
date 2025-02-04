@@ -1,4 +1,5 @@
-﻿@model List<PersonelControlSystem.Dtos.LocationDto.ResultLocationDto>
+﻿@model List<PersonelControlSystem.Dtos.ShiftDto.ResultShiftDto>
+
 
 @{
     ViewData["Title"] = "Index";
@@ -18,7 +19,7 @@
                         <table class="table table-hover table-striped">
                             <thead>
                             <th>#</th>
-                            <th>Lokasyon</th>
+                            <th>Vardiya</th>
                             <th>Sil</th>
                             <th>Güncelle</th>
                             </thead>
@@ -26,18 +27,19 @@
                                 @foreach (var item in Model)
                                 {
                                     <tr>
-                                        <td>@item.LocationID</td>
-                                        <td>@item.LocationName</td>
-                                        <td><a href="/Location/DeleteLocation/@item.LocationID" class="btn btn-danger">Sil</a></td>
-                                        <td><a href="/Location/UpdateLocation/@item.LocationID" class="btn btn-info">Güncelle</a></td>
+                                        <td>@item.ShiftID</td>
+                                        <td>@item.ShiftHours</td>
+                                        <td><a href="#" class="btn btn-danger">Sil</a></td>
+                                        <td><a href="#" class="btn btn-info">Güncelle</a></td>
                                     </tr>
                                 }
                             </tbody>
                         </table>
                     </div>
                 </div>
-                <a href="/Location/CreateLocation/" class="btn btn-primary">Lokasyon Ekle</a>
+                <a href="#" class="btn btn-primary">Vardiya Ekle</a>
             </div>
         </div>
     </div>
-</div> 
+</div>
+

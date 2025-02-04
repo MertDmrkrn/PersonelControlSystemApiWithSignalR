@@ -35,7 +35,7 @@ namespace PersonelControlSystemApi.Controllers
             return Ok("Lokasyon Ekleme İşlemi Gerçekleştirildi.");
         }
 
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public IActionResult DeleteLocation(int id) 
         {
             var values=_locationService.TGetByID(id);
@@ -51,7 +51,7 @@ namespace PersonelControlSystemApi.Controllers
             return Ok("Lokasyon Güncelleme İşlemi Gerçekleştirildi.");
         }
 
-        [HttpGet("GetLocation")]
+        [HttpGet("{id}")]
         public IActionResult GetLocation(int id)
         {
             var values = _locationService.TGetByID(id);

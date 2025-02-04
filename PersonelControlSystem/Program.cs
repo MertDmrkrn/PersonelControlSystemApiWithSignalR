@@ -1,6 +1,7 @@
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddHttpClient();//Api consume yaptýktan sonra program.cs dosyasý içerisine bu kodu ekledim bu sayede hata ortadan kalktý
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();

@@ -36,7 +36,7 @@ namespace PersonelControlSystemApi.Controllers
             return Ok("Vardiya Ekleme İşlemi Gerçekleştirildi.");
         }
 
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public IActionResult DeleteShift(int id)
         {
             var values = _shiftService.TGetByID(id);
@@ -52,7 +52,7 @@ namespace PersonelControlSystemApi.Controllers
             return Ok("Vardiya Güncelleme İşlemi Gerçekleştirildi.");
         }
 
-        [HttpGet("GetShift")]
+        [HttpGet("{id}")]
         public IActionResult GetShift(int id)
         {
             var values= _shiftService.TGetByID(id);
