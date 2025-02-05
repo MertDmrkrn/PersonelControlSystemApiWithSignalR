@@ -1,0 +1,35 @@
+﻿@model PersonelControlSystem.Dtos.ShiftDto.UpdateShiftDto
+
+@{
+    ViewData["Title"] = "UpdateShift";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<div class="content">
+	<div class="container-fluid">
+		<h4 class="page-title">Vardiya İşlemleri</h4>
+		<div class="row">
+			<div class="col-md-12">
+				<form method="post">
+					<div class="card">
+						<div class="card-header">
+							<div class="card-title">Vardiya Güncelleme Sayfası</div>
+						</div>
+						<div class="card-body">
+							<input type="hidden" asp-for="ShiftID" />
+							<div class="form-group">
+								<label for="shifthours">Lokasyon Adını Giriniz</label>
+								<input type="text" class="form-control" id="shifthours" asp-for="ShiftHours" placeholder="Vardiya">
+							</div>
+						</div>
+
+					</div>
+					<div class="card-action">
+						<button class="btn btn-primary">Vardiyayı Güncelle</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+

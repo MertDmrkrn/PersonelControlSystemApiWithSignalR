@@ -1,4 +1,4 @@
-﻿@model List<PersonelControlSystem.Dtos.ShiftDto.ResultShiftDto>
+﻿@model List<PersonelControlSystem.Dtos.NotificationDto.ResultNotificationDto>
 
 
 @{
@@ -19,7 +19,10 @@
                         <table class="table table-hover table-striped">
                             <thead>
                             <th>#</th>
-                            <th>Vardiya</th>
+                            <th>Duyuru Başlığı</th>
+                            <th>Resim</th>
+                            <th>Duyuru Açıklaması</th>
+                            <th>Duyuru Tarihi</th>
                             <th>Sil</th>
                             <th>Güncelle</th>
                             </thead>
@@ -27,19 +30,21 @@
                                 @foreach (var item in Model)
                                 {
                                     <tr>
-                                        <td>@item.ShiftID</td>
-                                        <td>@item.ShiftHours</td>
-                                        <td><a href="/Shift/DeleteShift/@item.ShiftID" class="btn btn-danger">Sil</a></td>
-                                        <td><a href="/Shift/UpdateShift/@item.ShiftID" class="btn btn-info">Güncelle</a></td>
+                                        <td>@item.NotificationID</td>
+                                        <td>@item.NotificationTitle</td>
+                                        <td>@item.ImgUrl</td>
+                                        <td>@item.NotificationDescription</td>
+                                        <td>@item.NotificationDate</td>
+                                        <td><a href="#" class="btn btn-danger">Sil</a></td>
+                                        <td><a href="#" class="btn btn-info">Güncelle</a></td>
                                     </tr>
                                 }
                             </tbody>
                         </table>
                     </div>
                 </div>
-                <a href="/Shift/CreateShift/" class="btn btn-primary">Vardiya Ekle</a>
+                <a href="#" class="btn btn-primary">Duyuru Ekle</a>
             </div>
         </div>
     </div>
 </div>
-
