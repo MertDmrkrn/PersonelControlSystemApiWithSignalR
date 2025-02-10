@@ -35,7 +35,7 @@ namespace PersonelControlSystemApi.Controllers
             return Ok("Bildirim Ekleme İşlemi Gerçekleştirildi.");
         }
 
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public IActionResult DeleteNotification(int id)
         {
             var values = _notificationService.TGetByID(id);
@@ -51,7 +51,7 @@ namespace PersonelControlSystemApi.Controllers
             return Ok("Bildirim Güncelleme İşlemi Gerçekleştirildi.");
         }
 
-        [HttpGet("GetNotification")]
+        [HttpGet("{id}")]
         public IActionResult GetNotification(int id)
         {
             var values=_notificationService.TGetByID(id);

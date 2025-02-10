@@ -35,15 +35,15 @@
                                         <td>@item.ImgUrl</td>
                                         <td>@item.NotificationDescription</td>
                                         <td>@item.NotificationDate</td>
-                                        <td><a href="#" class="btn btn-danger">Sil</a></td>
-                                        <td><a href="#" class="btn btn-info">Güncelle</a></td>
+                                        <td><a href="/Notification/DeleteNotification/@item.NotificationID" class="btn btn-danger">Sil</a></td>
+                                        <td><a href="/Notification/UpdateNotification/@item.NotificationID" class="btn btn-info">Güncelle</a></td>
                                     </tr>
                                 }
                             </tbody>
                         </table>
                     </div>
                 </div>
-                <a href="#" class="btn btn-primary">Duyuru Ekle</a>
+                <a href="/Notification/CreateNotification/" class="btn btn-primary">Duyuru Ekle</a>
             </div>
         </div>
     </div>
