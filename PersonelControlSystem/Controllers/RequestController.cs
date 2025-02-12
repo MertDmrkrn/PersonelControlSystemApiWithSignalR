@@ -29,14 +29,12 @@ namespace PersonelControlSystem.Controllers
 
         //İstek Ekleme Consume
         [HttpGet]
-
-        public IActionResult CreateRequset()
+        public IActionResult CreateRequest()
         {
             return View();
         }
 
         [HttpPost]
-
         public async Task<IActionResult> CreateRequest(CreateRequestDto createRequestDto)
         {
             var client = _httpClientFactory.CreateClient();
@@ -49,6 +47,7 @@ namespace PersonelControlSystem.Controllers
             }
             return View();
         }
+
 
         //İstek Silme Consume
         public async Task<IActionResult> DeleteRequest(int id)
@@ -90,6 +89,5 @@ namespace PersonelControlSystem.Controllers
             }
             return View();
         }
-
     }
 }
