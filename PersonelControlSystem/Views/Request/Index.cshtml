@@ -1,0 +1,48 @@
+﻿@model List<PersonelControlSystem.Dtos.RequestDto.ResultRequestDto>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card strpied-tabled-with-hover">
+                    <div class="card-header ">
+                        <h4 class="card-title">İstek Sayfası</h4>
+                        <p class="card-category">Tüm İstekler</p>
+                    </div>
+                    <div class="card-body table-full-width table-responsive">
+                        <table class="table table-hover table-striped">
+                            <thead>
+                            <th>#</th>
+                            <th>İstek Başlığı</th>
+                            <th>İstek İçeriği</th>
+                            <th>İstek Tarihi</th>
+                            <th>Sil</th>
+                            <th>Güncelle</th>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>@item.RequestID</td>
+                                        <td>@item.RequestTitle</td>
+                                        <td>@item.RequestDescription</td>
+                                        <td>@item.RequestDate</td>
+                                        <td><a href="/Request/DeleteRequest/@item.RequestID" class="btn btn-danger">Sil</a></td>
+                                        <td><a href="/Request/UpdateRequest/@item.RequestID" class="btn btn-info">Güncelle</a></td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <a href="/Request/CreateRequest/" class="btn btn-primary">İstek Ekle</a>
+            </div>
+        </div>
+    </div>
+</div>
+

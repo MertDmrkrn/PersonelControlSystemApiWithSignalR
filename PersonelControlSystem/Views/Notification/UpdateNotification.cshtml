@@ -1,8 +1,53 @@
-﻿
+﻿@model PersonelControlSystem.Dtos.NotificationDto.UpdateNotificationDto
+
 @{
     ViewData["Title"] = "UpdateNotification";
     Layout = "~/Views/AdminLayout/Index.cshtml";
 }
 
-<h1>Duyuru Güncelleme Sayfası</h1>
+<div class="content">
+	<div class="container-fluid">
+		<h4 class="page-title">Duyuru İşlemleri</h4>
+		<div class="row">
+			<div class="col-md-12">
+				<form method="post">
+					<div class="card">
+						<div class="card-header">
+							<div class="card-title">Yeni Duyuru Girişi</div>
+						</div>
+						<div class="card-body">
+							<input type="hidden" asp-for="NotificationID" />
+							<div class="form-group">
+								<label for="notificationtitle">Duyuru Başlığını Giriniz</label>
+								<input type="text" class="form-control" id="notificationtitle" asp-for="NotificationTitle" placeholder="Başlık">
+							</div>
+						</div>
+						<div class="card-body">
+							<div class="form-group">
+								<label for="notificationdescription">Duyuru İçeriğini Giriniz</label>
+								<input type="text" class="form-control" id="notificationdescription" asp-for="NotificationDescription" placeholder="İçerik">
+							</div>
+						</div>
+						<div class="card-body">
+							@*Burası Hidden olup default fotoğraf girebilir*@
+							<div class="form-group">
+								<label for="notificationimgurl">Duyuru Fotoğrafı Giriniz</label>
+								<input type="text" class="form-control" id="notificationimgurl" asp-for="ImgUrl" placeholder="Fotoğraf">
+							</div>
+						</div>
+						<div class="card-body">
+							<div class="form-group">
+								<label for="notificationdate">Duyuru Tarihi Giriniz</label>
+								<input type="date" class="form-control" id="notificationdate" asp-for="NotificationDate" placeholder="Tarih">
+							</div>
+						</div>
+					</div>
+					<div class="card-action">
+						<button class="btn btn-primary">Duyuru Güncelle</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
 
