@@ -1,8 +1,10 @@
 ﻿using AutoMapper;
 using BusinessLayer.Abstract;
+using DataAccessLayer.Concrete;
 using EntityLayer.Concrete;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using PersonelControlSystemDto.PersonelDto;
 
 namespace PersonelControlSystemApi.Controllers
@@ -56,6 +58,23 @@ namespace PersonelControlSystemApi.Controllers
         {
             var values=_personelService.TGetByID(id);
             return Ok(_mapper.Map<GetPersonelDto>(values));
+        }
+
+        [HttpGet("PersonelListWithShiftAndLocation")]
+        public IActionResult PersonelListWithShiftAndLocation()
+        {
+            var context = new Context();
+            var values = context.Personels.Include(x => x.Location).Include(y => y.Shift).Select(z => new ResultPersonelWithShiftAndLocation
+            {
+                PersonelID = z.PersonelID,
+                PersonelName = z.PersonelName,
+                PersonelTitle = z.PersonelTitle,
+                PersonelRegisterNumber = z.PersonelRegisterNumber,
+                PersonelShiftDate = z.PersonelShiftDate,
+                ShiftHours = z.Shift.ShiftHours,
+                LocationName = z.Location.LocationName
+            });
+            return Ok(values.ToList());
         }
     }
 }

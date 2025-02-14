@@ -1,0 +1,54 @@
+﻿@model List<PersonelControlSystem.Dtos.PersonelDto.ResultPersonelDto>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card strpied-tabled-with-hover">
+                    <div class="card-header ">
+                        <h4 class="card-title">Personel Sayfası</h4>
+                        <p class="card-category">Tüm Personeller</p>
+                    </div>
+                    <div class="card-body table-full-width table-responsive">
+                        <table class="table table-hover table-striped">
+                            <thead>
+                            <th>#</th>
+                            <th>Personel Adı Soyadı</th>
+                            <th>Personel Ünvan</th>
+                            <th>Personel Sicil Numarası</th>
+                            <th>Personel Vardiya Tarihi</th>
+                            <th>Personel Vardiyası</th>
+                            <th>Personel Birimi</th>
+                            <th>Sil</th>
+                            <th>Güncelle</th>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>@item.PersonelID</td>
+                                        <td>@item.PersonelName</td>
+                                        <td>@item.PersonelTitle</td>
+                                        <td>@item.PersonelRegisterNumber</td>
+                                        <td>@item.PersonelShiftDate</td>
+                                        <td>@item.ShiftHours</td>
+                                        <td>@item.LocationName</td>
+                                        <td><a href="/Personel/DeletePersonel/@item.PersonelID" class="btn btn-danger">Sil</a></td>
+                                        <td><a href="/Personel/UpdatePersonel/@item.PersonelID" class="btn btn-info">Güncelle</a></td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <a href="/Personel/CreatePersonel/" class="btn btn-primary">Personel Ekle</a>
+            </div>
+        </div>
+    </div>
+</div>
+
