@@ -1,6 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Newtonsoft.Json;
+using PersonelControlSystem.Dtos.LocationDto;
 using PersonelControlSystem.Dtos.PersonelDto;
+using PersonelControlSystem.Dtos.ShiftDto;
 using System.Text;
 
 namespace PersonelControlSystem.Controllers
@@ -30,9 +33,39 @@ namespace PersonelControlSystem.Controllers
 
 		//Personel Ekleme Consume
 		[HttpGet]
-		public IActionResult CreatePersonel()
+		public async Task<IActionResult> CreatePersonel()
 		{
-			return View();
+            var client = _httpClientFactory.CreateClient();
+
+            // Location verisini çek
+            var responseLocation = await client.GetAsync("https://localhost:7166/api/Location");
+            var jsonLocation = await responseLocation.Content.ReadAsStringAsync();
+            var locations = JsonConvert.DeserializeObject<List<ResultLocationDto>>(jsonLocation);
+
+            // Shift verisini çek
+            var responseShift = await client.GetAsync("https://localhost:7166/api/Shift");
+            var jsonShift = await responseShift.Content.ReadAsStringAsync();
+            var shifts = JsonConvert.DeserializeObject<List<ResultShiftDto>>(jsonShift);
+
+            // Location için SelectList
+            List<SelectListItem> locationList = locations.Select(x => new SelectListItem
+            {
+                Text = x.LocationName,
+                Value = x.LocationID.ToString()
+            }).ToList();//Buraları düzenle
+
+            // Shift için SelectList
+            List<SelectListItem> shiftList = shifts.Select(x => new SelectListItem
+            {
+                Text = x.ShiftHours,
+                Value = x.ShiftID.ToString()
+            }).ToList();//Buraları düzenle
+
+            ViewBag.Locations = locationList;
+            ViewBag.Shifts = shiftList;
+
+
+            return View();
 		}
 
 		[HttpPost]
