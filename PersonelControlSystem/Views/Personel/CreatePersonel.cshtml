@@ -1,8 +1,69 @@
-﻿
+﻿@model PersonelControlSystem.Dtos.PersonelDto.CreatePersonelDto
+
 @{
     ViewData["Title"] = "CreatePersonel";
     Layout = "~/Views/AdminLayout/Index.cshtml";
 }
 
-<h1>Personel Ekleme Sayfası</h1>
+<div class="content">
+	<div class="container-fluid">
+		<h4 class="page-title">Personel İşlemleri</h4>
+		<div class="row">
+			<div class="col-md-12">
+				<form method="post">
+					<div class="card">
+						<div class="card-header">
+							<div class="card-title">Yeni Personel Girişi</div>
+						</div>
+						<div class="card-body">
+							<div class="form-group">
+								<label for="personelname">Personel Adını Soyadını Giriniz</label>
+								<input type="text" class="form-control" id="personelname" asp-for="PersonelName" placeholder="Personel Adı Soyadı">
+							</div>
+						</div>
+
+						<div class="card-body">
+							<div class="form-group">
+								<label for="personeltitle">Personel Ünvanını Giriniz</label>
+								<input type="text" class="form-control" id="personeltitle" asp-for="PersonelTitle" placeholder="Personel Ünvanı">
+							</div>
+						</div>
+
+						<div class="card-body">
+							<div class="form-group">
+								<label for="personelregisternumber">Personel Sicil Numarasını Giriniz</label>
+								<input type="text" class="form-control" id="personelregisternumber" asp-for="PersonelRegisterNumber" placeholder="Personel Sicil No">
+							</div>
+						</div>
+
+						<div class="card-body">
+							<div class="form-group">
+								<label for="personelshiftdate">Personel Vardiya Tarihi Giriniz</label>
+								<input type="text" class="form-control" id="personelshiftdate" asp-for="PersonelShiftDate" placeholder="Personel Vardiya Tarihi">
+							</div>
+						</div>
+
+						<div class="card-body">
+							<div class="form-group">
+								<label for="personelshift">Personel Vardiyasını Giriniz</label>
+								@Html.DropDownListFor(x => x.ShiftID, (List<SelectListItem>)ViewBag.v2, new { @class = "form-control" })
+							</div>
+						</div>
+
+						<div class="card-body">
+							<div class="form-group">
+								<label for="personellocation">Personel Lokasyonunu Giriniz</label>
+								@Html.DropDownListFor(x => x.LocationID, (List<SelectListItem>)ViewBag.v1, new { @class = "form-control" })
+							</div>
+						</div>
+
+					</div>
+					<div class="card-action">
+						<button class="btn btn-primary">Personel Ekle</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
 

@@ -37,7 +37,7 @@ namespace PersonelControlSystemApi.Controllers
             return Ok("Personel Ekleme İşlemi Gerçekleştirildi.");
         }
 
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public IActionResult DeletePersonel(int id)
         {
             var values = _personelService.TGetByID(id);
@@ -53,7 +53,7 @@ namespace PersonelControlSystemApi.Controllers
             return Ok("Personel Güncelleme İşlemi Gerçekleştirildi.");
         }
 
-        [HttpGet("GetPersonel")]
+        [HttpGet("{id}")]
         public IActionResult GetPersonel(int id)
         {
             var values=_personelService.TGetByID(id);

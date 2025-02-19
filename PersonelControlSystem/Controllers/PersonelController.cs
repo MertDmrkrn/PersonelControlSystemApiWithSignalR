@@ -38,31 +38,29 @@ namespace PersonelControlSystem.Controllers
             var client = _httpClientFactory.CreateClient();
 
             // Location verisini çek
-            var responseLocation = await client.GetAsync("https://localhost:7166/api/Location");
-            var jsonLocation = await responseLocation.Content.ReadAsStringAsync();
-            var locations = JsonConvert.DeserializeObject<List<ResultLocationDto>>(jsonLocation);
+            var responseMessage1 = await client.GetAsync("https://localhost:7074/api/Location");
+            var jsonData1 = await responseMessage1.Content.ReadAsStringAsync();
+            var values1 = JsonConvert.DeserializeObject<List<ResultLocationDto>>(jsonData1);
+			List<SelectListItem> values2 = (from x in values1
+											select new SelectListItem
+											{
+												Text = x.LocationName,
+												Value = x.LocationID.ToString()
+											}).ToList();
 
             // Shift verisini çek
-            var responseShift = await client.GetAsync("https://localhost:7166/api/Shift");
-            var jsonShift = await responseShift.Content.ReadAsStringAsync();
-            var shifts = JsonConvert.DeserializeObject<List<ResultShiftDto>>(jsonShift);
+            var responseMessage2 = await client.GetAsync("https://localhost:7074/api/Shift");
+            var jsonData2 = await responseMessage2.Content.ReadAsStringAsync();
+            var values3 = JsonConvert.DeserializeObject<List<ResultShiftDto>>(jsonData2);
+			List<SelectListItem> values4 = (from y in values3
+											select new SelectListItem
+											{
+												Text = y.ShiftHours,
+												Value = y.ShiftHours.ToString()
+											}).ToList();
 
-            // Location için SelectList
-            List<SelectListItem> locationList = locations.Select(x => new SelectListItem
-            {
-                Text = x.LocationName,
-                Value = x.LocationID.ToString()
-            }).ToList();//Buraları düzenle
-
-            // Shift için SelectList
-            List<SelectListItem> shiftList = shifts.Select(x => new SelectListItem
-            {
-                Text = x.ShiftHours,
-                Value = x.ShiftID.ToString()
-            }).ToList();//Buraları düzenle
-
-            ViewBag.Locations = locationList;
-            ViewBag.Shifts = shiftList;
+            ViewBag.v1 = values2;//Location
+            ViewBag.v2 = values4;//Shift
 
 
             return View();
