@@ -40,7 +40,7 @@ namespace PersonelControlSystem.Controllers
             // Location verisini çek
             var responseMessage1 = await client.GetAsync("https://localhost:7074/api/Location");
             var jsonData1 = await responseMessage1.Content.ReadAsStringAsync();
-            var values1 = JsonConvert.DeserializeObject<List<ResultLocationDto>>(jsonData1);
+            var values1 = JsonConvert.DeserializeObject<List<ResultLocationDto>>(jsonData1) ?? new List<ResultLocationDto>();
 			List<SelectListItem> values2 = (from x in values1
 											select new SelectListItem
 											{
@@ -48,10 +48,10 @@ namespace PersonelControlSystem.Controllers
 												Value = x.LocationID.ToString()
 											}).ToList();
 
-            // Shift verisini çek
-            var responseMessage2 = await client.GetAsync("https://localhost:7074/api/Shift");
-            var jsonData2 = await responseMessage2.Content.ReadAsStringAsync();
-            var values3 = JsonConvert.DeserializeObject<List<ResultShiftDto>>(jsonData2);
+			// Shift verisini çek
+			var responseMessage2 = await client.GetAsync("https://localhost:7074/api/Shift");
+			var jsonData2 = await responseMessage2.Content.ReadAsStringAsync();
+			var values3 = JsonConvert.DeserializeObject<List<ResultShiftDto>>(jsonData2) ?? new List<ResultShiftDto>();
 			List<SelectListItem> values4 = (from y in values3
 											select new SelectListItem
 											{
@@ -59,11 +59,12 @@ namespace PersonelControlSystem.Controllers
 												Value = y.ShiftHours.ToString()
 											}).ToList();
 
-            ViewBag.v1 = values2;//Location
-            ViewBag.v2 = values4;//Shift
+			ViewBag.v1 = values2;//Location
+			ViewBag.v2 = values4;//Shift
 
 
-            return View();
+			return View();
+
 		}
 
 		[HttpPost]

@@ -39,14 +39,14 @@
 						<div class="card-body">
 							<div class="form-group">
 								<label for="personelshiftdate">Personel Vardiya Tarihi Giriniz</label>
-								<input type="text" class="form-control" id="personelshiftdate" asp-for="PersonelShiftDate" placeholder="Personel Vardiya Tarihi">
+								<input type="date" class="form-control" id="personelshiftdate" asp-for="PersonelShiftDate" placeholder="Personel Vardiya Tarihi">
 							</div>
 						</div>
 
 						<div class="card-body">
 							<div class="form-group">
 								<label for="personelshift">Personel Vardiyasını Giriniz</label>
-								@Html.DropDownListFor(x => x.ShiftID, (List<SelectListItem>)ViewBag.v2, new { @class = "form-control" })
+								@Html.DropDownListFor(x => x.ShiftID, (List<SelectListItem>)ViewBag.v2, new { @class = "form-control" }) 
 							</div>
 						</div>
 
